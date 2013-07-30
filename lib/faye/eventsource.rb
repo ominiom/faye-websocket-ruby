@@ -38,9 +38,11 @@ module Faye
 
       @stream.write("HTTP/1.1 200 OK\r\n" +
                     "Content-Type: text/event-stream\r\n" +
+                    "Access-Control-Allow-Origin: *\r\n" +
                     "Cache-Control: no-cache, no-store\r\n" +
                     "Connection: close\r\n" +
                     "\r\n\r\n" +
+                    (" " * 2049) +
                     "retry: #{ (@retry * 1000).floor }\r\n\r\n")
 
       EventMachine.next_tick { open }
